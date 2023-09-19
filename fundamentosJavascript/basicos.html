@@ -8,20 +8,30 @@
   <body>
     <h1>Fundamentos Javascript</h1>
     <script>
-      // NOTE: Esto es parte de la destructuración
-      const numeros = [1, 2, 3];
-      //Sin destructuracion
-      let uno = numeros[0],
-        dos = numeros[1],
-        tres = numeros[2];
-      console.log(uno, dos, tres);
-      //Con destructuración
-      const [one, two, three] = numeros;
-      console.log(one, two, three);
-      const persona = { nombre: "Mario", apellido: "Garcia", edad: 29 };
-      const { nombre, edad, apellido } = persona;
-      console.log(nombre, apellido, edad);
-      // NOTE:  Recordemos que para que la destructuración funcione debemos de poner los mismos nombres de las variables declaradas en el objeto o array
+      //  objetos literales
+      let nombre = "Firulais",
+        edad = 7;
+      const perro = {
+        nombre: nombre,
+        edad: edad,
+        ladrar: function () {
+          console.log("guauu guauu!!");
+        },
+      };
+      console.log(perro);
+      perro.ladrar();
+      // Esto es lo de objeto literales
+      const dog = {
+        nombre,
+        edad,
+        raza: "Callejero",
+        ladrar() {
+          console.log("guauu guauu, guauu!!");
+        },
+      };
+      console.log(dog);
+      dog.ladrar();
+      // NOTE: nos referimos qal echo de que si la variable que definimos ejemplo en dog, con los mismos valores de nuestra variable nombre y edad, estos los asigna en automatico.
     </script>
   </body>
 </html>
