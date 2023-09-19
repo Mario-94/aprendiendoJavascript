@@ -1,0 +1,41 @@
+Seccion de variables 
+let y var
+En esta seccion aprendimos lo que es la variable let y var y porque de ahora en adelante no se deben de utilizar la palabra reservada var, lo cual es una muy mala practica debido a que esta crea una variable global mientras que let crea una variable de bloque
+     // NOTE:Ambitos de bloques son aquellos que se llaman solo cuando son necesarios, es decir en el bloque que se utilizan ejemplo de ellos son los if, for, while o demas
+      // if(){
+      //   var a=3;
+      // }
+const
+Para las variables de tipo constantes, que son aquellas cuyo valor no cambia es diferente es decir estas no cambiaran su valor aunque intentemos cambiarlos, pero en casos concretos estos pueden sufrir modificaciones como es el caso de las cuando son objetos
+ejemplo:
+const cerveza{
+    tipo:"ambar"
+    precio:12.55
+}
+Si bien en este caso el valor no puede cambiar en este si podemos agregar un nuevo valor al objeto.
+cerveza.push(medida:"345ml")
+de esta manera lo que estamos realizando es agregar un nuevo parametro al objeto que ya tenemos.
+
+Operadores
+aritemeticos +- */ % (), estos son los que tenemos
+Relacionales <, >, <=, >=, ==, ===, !=, !==, estos son los que tenemos para realizar las operaciones de igualdad; una de las grandes diferencias que se tendran entre estas expreciones relacionales 
+= esta es para definir una valor 
+== en esta comparamos los valores
+=== y en esta comparamos los valores tanto el tipo de dato como su valor en si.
+
+Incremento
+let i=1
+i =1+2 es igual a i+=2 ya que esto lo que me indica es que al valor que se tiene en i mas el mismo valor, más la cantidad que estamos dando
+
+Operador unario
+Estos si afecta donde pongamos nuestos signos, es decir el valor que tenemos en el primero ejemplo le asigna el valor a la i hasta el final, mientras que en el segundo ejemplo "++i" en este primero asigna el valor a i
+i++;
+i--;
+++i;
+--i;
+
+Logicos
+Estos operadores son los que conocemos cmo 
+! = not, es decir niega lo que es verdadero o invierte los valores de tru a false y de false a true
+|| or: estos operadores se utilizan en caso de que queramos valorar dos diferentes tipos de datos, y decimos cuando se cumplam cualquiera de estas que realice algo
+&& and estas solo se aplican cuando las dos cosas a valorar o comparar se cumplan
