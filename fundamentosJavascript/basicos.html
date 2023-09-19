@@ -8,49 +8,64 @@
   <body>
     <h1>Fundamentos Javascript</h1>
     <script>
-      /*  arrow function o funciones flechas */
-      // const saludar = function () {
-      //   console.log("hola");
-      // };
-      // lo anterior seria la forma tradicional
-      // y esta es la nueva forma o la arrow function, soloes eliminar
-      const saludar = () => {
-        console.log("hola");
+      //NOTE: programacion orientada a objetos (POO)
+      /*
+      Clases: Modelos a seguir
+      Objetos: Es una instancia de la clase
+      Atributos: Es una carecterístico o propiedad del objeto (son variables dentro de un objeto)
+      Métodos: Son las acciones que un objeto puede realizar (son funciones dentro de un objeto)
+      */
+      const animal = {
+        nombre: "Snoopy",
+        sonar() {
+          console.log("Hago sonidos porque estoy vivo");
+        },
       };
-      saludar();
-      // const sumar = function (a, b) {
-      //   return a + b;
-      // };
-      // console.log(sumar(1, 2));
-      // Esto es igual a NOTE: cuando solo se retorna un valor sensillo como es el caso del ejemplo anterior, este simplemente se deja de la siguiente manera
-      const sumar = (a, b) => a + b;
-      console.log(sumar(9, 9));
-      const sumar2 = (a, b) => {
-        return a + b;
+      const animal2 = {
+        nombre: "Lola Bunny",
+        sonar() {
+          console.log("Hago sonidos porque estoy vivo");
+        },
       };
-      console.log(sumar2(9, 19));
-      // Otro ejemplo
-      const numero = [1, 2, 3, 4, 5];
-      numero.forEach((el, index) => {
-        console.log(`Este es el elemeto ${el} y esta su posicion ${index}`);
-      });
-      function Perro() {
-        console.log(this);
+      console.log(animal);
+      console.log(animal2);
+
+      // Funcion constructora
+      // NOTE: en esta funcion animal estamos teniendo un error porque se recomienda que en la funcion solo tengamos los atributos, y los metodos los saquemos fuera de la funcion como lo mostraremos despues
+      // function Animal(nombre, genero) {
+      //   // Atributos
+      //   this.nombre = nombre;
+      //   this.genero = genero;
+      //   // Métodos
+      //   this.sonar = function () {
+      //     console.log("Hago sonidos porque estoy vivo");
+      //   };
+      //   this.saludar = function () {
+      //     console.log(`Hola me llamo ${this.nombre}`);
+      //   };
+      // }
+      // NOTE: En este caso lo que hacemos es asignar los métodos al prototipo, no a la funcion
+      function Animal(nombre, genero) {
+        // Atributos
+        this.nombre = nombre;
+        this.genero = genero;
+        // Métodos
       }
-      Perro();
-      const perro = {
-        nombre: "dexter",
-        ladrar: () => {
-          // En este contesto como es una arrow function toma el valor del objeto padre que en este caso es windows, por eso en esta parte la propiedad this, por eso debemos de tener cuidado como utilizamos las arrow funticon
-          console.log(this);
-        },
-        ladrar2() {
-          // mientras que ene este aso lo que hace es que reconoce todas las propiedades  como tal del objeto donde ha sido declarado o el segmento donde se encuentra
-          console.log(this);
-        },
+      // entonces para asignarlo se hace lo siguiente
+      Animal.prototype.sonar = function () {
+        console.log("Hago sonidos porque estoy vivo");
       };
-      perro.ladrar();
-      perro.ladrar2();
+      Animal.prototype.saludar = function () {
+        console.log(`Hola me llamo ${this.nombre}`);
+      };
+      const snoopy = new Animal("Snoopy", "Macho"),
+        lolaBunny = new Animal("LolaBunny", "Hembra");
+      console.log(snoopy);
+      console.log(lolaBunny);
+      snoopy.sonar();
+      snoopy.saludar();
+      lolaBunny.sonar();
+      lolaBunny.saludar();
     </script>
   </body>
 </html>
