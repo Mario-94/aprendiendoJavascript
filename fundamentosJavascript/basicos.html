@@ -8,25 +8,49 @@
   <body>
     <h1>Fundamentos Javascript</h1>
     <script>
-      // NOTE: Parametros rest, son una forma de  ir agragando valores de una manera infinita o conforme vaya creciendo nuestra variable
-      function sumar(a, b, ...c) {
-        let resultado = a + b;
-        c.forEach(function (n) {
-          resultado += n;
-        });
-        return resultado;
+      /*  arrow function o funciones flechas */
+      // const saludar = function () {
+      //   console.log("hola");
+      // };
+      // lo anterior seria la forma tradicional
+      // y esta es la nueva forma o la arrow function, soloes eliminar
+      const saludar = () => {
+        console.log("hola");
+      };
+      saludar();
+      // const sumar = function (a, b) {
+      //   return a + b;
+      // };
+      // console.log(sumar(1, 2));
+      // Esto es igual a NOTE: cuando solo se retorna un valor sensillo como es el caso del ejemplo anterior, este simplemente se deja de la siguiente manera
+      const sumar = (a, b) => a + b;
+      console.log(sumar(9, 9));
+      const sumar2 = (a, b) => {
+        return a + b;
+      };
+      console.log(sumar2(9, 19));
+      // Otro ejemplo
+      const numero = [1, 2, 3, 4, 5];
+      numero.forEach((el, index) => {
+        console.log(`Este es el elemeto ${el} y esta su posicion ${index}`);
+      });
+      function Perro() {
+        console.log(this);
       }
-      console.log(sumar(1, 2));
-      console.log(sumar(1, 2, 3));
-      console.log(sumar(1, 2, 3, 4));
-      console.log(sumar(1, 2, 3, 4, 5));
-      // NOTE: operador spred en este caso lo que se realiza es una copia de un objeto y de esta manera no modificamos los arreglos de ejemplo y los juntamos en uno solo de esta manera podemos manipular facilmente el ultimo elemento sin modificar los originales como se aprecia en el ejemplo
-
-      const arr1 = [1, 2, 3, 4, 5],
-        arr2 = [6, 7, 8, 9, 0];
-      console.log(arr1, arr2);
-      const arr3 = [...arr1, ...arr2];
-      console.log(arr3);
+      Perro();
+      const perro = {
+        nombre: "dexter",
+        ladrar: () => {
+          // En este contesto como es una arrow function toma el valor del objeto padre que en este caso es windows, por eso en esta parte la propiedad this, por eso debemos de tener cuidado como utilizamos las arrow funticon
+          console.log(this);
+        },
+        ladrar2() {
+          // mientras que ene este aso lo que hace es que reconoce todas las propiedades  como tal del objeto donde ha sido declarado o el segmento donde se encuentra
+          console.log(this);
+        },
+      };
+      perro.ladrar();
+      perro.ladrar2();
     </script>
   </body>
 </html>
