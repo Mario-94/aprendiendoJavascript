@@ -8,30 +8,25 @@
   <body>
     <h1>Fundamentos Javascript</h1>
     <script>
-      //  objetos literales
-      let nombre = "Firulais",
-        edad = 7;
-      const perro = {
-        nombre: nombre,
-        edad: edad,
-        ladrar: function () {
-          console.log("guauu guauu!!");
-        },
-      };
-      console.log(perro);
-      perro.ladrar();
-      // Esto es lo de objeto literales
-      const dog = {
-        nombre,
-        edad,
-        raza: "Callejero",
-        ladrar() {
-          console.log("guauu guauu, guauu!!");
-        },
-      };
-      console.log(dog);
-      dog.ladrar();
-      // NOTE: nos referimos qal echo de que si la variable que definimos ejemplo en dog, con los mismos valores de nuestra variable nombre y edad, estos los asigna en automatico.
+      // NOTE: Parametros rest, son una forma de  ir agragando valores de una manera infinita o conforme vaya creciendo nuestra variable
+      function sumar(a, b, ...c) {
+        let resultado = a + b;
+        c.forEach(function (n) {
+          resultado += n;
+        });
+        return resultado;
+      }
+      console.log(sumar(1, 2));
+      console.log(sumar(1, 2, 3));
+      console.log(sumar(1, 2, 3, 4));
+      console.log(sumar(1, 2, 3, 4, 5));
+      // NOTE: operador spred en este caso lo que se realiza es una copia de un objeto y de esta manera no modificamos los arreglos de ejemplo y los juntamos en uno solo de esta manera podemos manipular facilmente el ultimo elemento sin modificar los originales como se aprecia en el ejemplo
+
+      const arr1 = [1, 2, 3, 4, 5],
+        arr2 = [6, 7, 8, 9, 0];
+      console.log(arr1, arr2);
+      const arr3 = [...arr1, ...arr2];
+      console.log(arr3);
     </script>
   </body>
 </html>
