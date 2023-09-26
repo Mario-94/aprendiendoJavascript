@@ -8,65 +8,23 @@
   <body>
     <h1>Fundamentos Javascript</h1>
     <script>
-      //NOTE: Clases y herencias
-      class Animal {
-        // el contructor es un método especial que se ejecuta en el momento de instanciar la clase
-        constructor(nombre, genero) {
-          //Atributos:
-          this.nombre = nombre;
-          this.genero = genero;
-        }
-        //Metodos: Para definir los métodos dentro de la clase se usa la siguiente forma
-        sonar() {
-          console.log("Hago sonidos porque estoy vivo");
-        }
-        saludar() {
-          console.log(`Hola me llamo ${this.nombre}`);
-        }
+      //NOTE: Operadores de corto circuito
+      // CortoCircuito OR: Cuando el valor de la izquierda en la expresión siempre pueda validar a true, es el valor que se cargará por defecto.
+      //
+      // CortoCircuito AND: Cuando el valor de la izquierda en la expresión siempre pueda validar a false es el valor que se carfará por defecto.
+      function saludar(nombre) {
+        nombre = nombre || "Desconocido";
+        console.log(`Hola ${nombre}`);
       }
-      // De esta manera heredamos los atributos y los metodos de Animal
-      class Perro extends Animal {
-        constructor(nombre, genero, tamanio) {
-          // con el métod super() se manda a llamar el constructor de la clase padre
-          super(nombre, genero);
-          this.tamanio = tamanio;
-          this.raza = null;
-        }
-        sonar() {
-          console.log("Soy un perro y mi sonido es un ladrido");
-        }
-        ladrar() {
-          console.log(`${this.nombre}hace Guauuu Guauu !!`);
-        }
-        // Un método estático se puede ejecutar sin necesidad de isntanciar la clase
-        static queEres() {
-          console.log(
-            "Los perrso somos animales mamifieros que pertenecemos a la familia de los caninos. Somos considerados los mejores amigos del hombre"
-          );
-        }
-        //Los setters y getters sonb los métodos especiales que nos permiten establecer y obtener los valores de atributos de nuestra clase
-        get getRaza() {
-          return this.raza;
-        }
-        set setRaza(raza) {
-          this.raza = raza;
-        }
+      saludar();
+      saludar("Mario");
+      function saludar2(nombre) {
+        nombre = "Mario" && nombre;
+        // En este caso en el momento que pasemos un valor a nombre automaticamente pone la sentencia en true
+        console.log(`Hola 2 ${nombre}`);
       }
-      const mimi = new Animal("Mimi", "Hembra"),
-        scooby = new Perro("Scobby", "Macho", "Gigante");
-      // el metodo estatico lo puedo utilizar sin la necesidad de crear una nueva instancia como las anteriores
-      Perro.queEres();
-      console.log(mimi);
-      mimi.sonar();
-      mimi.saludar();
-      console.log(scooby);
-      scooby.sonar();
-      scooby.saludar();
-      scooby.ladrar();
-      // en este caso aun que parezcan que son funciones las utilizaremos como sifueran un atributo, en este casoe primer console.log imprimira nullo ya que no tiene en ese momento el valor que tiene la raza
-      console.log(scooby.getRaza);
-      scooby.setRaza = "Grán Danés";
-      console.log(scooby.getRaza);
+      saludar2();
+      saludar2("Mario");
     </script>
   </body>
 </html>
