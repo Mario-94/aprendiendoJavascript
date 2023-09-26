@@ -9,21 +9,36 @@
     <h1>Fundamentos Javascript</h1>
 
     <script>
-      //NOTE: Expresiones regulares
-      /* Expresiones regulares son una secuencia de caracteres que forman un patrón de búsqueda, principalmente utilizandas para búsqueda de patrones de cadenas de caracteres.
+      //NOTE:Funciones anonimas autoejecutables
+      /*Las funciones anonimas son un patron utilizado anteriormente por las librerias como es jquery estas se escriben de la siguiente manera1
        */
-      let cadena =
-        "Lorem 5 ipsum dolor sit amet consectetur, adipisicing elit. Ex dolore cum, quidem quisquam illum assumenda eos expedita dicta! Qui totam exercitationem dolorum mollitia quis sapiente veniam delectus, sunt dolore 2 lorem suscipit?";
-      // let expReg = new RegExp("lorem", "ig");
-      // console.log(expReg.test(cadena));
-      // console.log(expReg.exec(cadena));
-      // La forma anterior es una de las formas pero actualmete se utiliza más la siguiente
-      let expReg2 = /lorem/gi;
-      console.log(expReg2.test(cadena));
-      console.log(expReg2.exec(cadena));
-      let expReg3 = /[0-9]/gi;
-      console.log(expReg3.test(cadena));
-      console.log(expReg3.exec(cadena));
+      (function () {
+        console.log("Mi primera funcion anonima");
+      })();
+      (function (d, w, c) {
+        console.log("Mi segunda funcion anonima");
+        console.log(d);
+        console.log(w);
+        c.log("Esto es un console.log");
+        // los parametros se envian en estos parensis de abajo
+      })(document, window, console);
+      /*Estos son algunos ejemplos para declarar una funcion anonima*/
+      // Clasica
+      (function () {
+        console.log("Version clasica");
+      })();
+      // la Crockford (javascript The Good Parts)
+      (function () {
+        console.log("Version CrockFord");
+      })();
+      // unarioa
+      +(function () {
+        console.log("verion unaria");
+      })();
+      // Facebook
+      !(function () {
+        console.log("Version de Facebook");
+      })();
     </script>
   </body>
 </html>
