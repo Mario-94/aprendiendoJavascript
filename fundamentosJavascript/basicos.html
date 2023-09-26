@@ -8,32 +8,46 @@
   <body>
     <h1>Fundamentos Javascript</h1>
     <script>
-      //NOTE: herencia prototípica
-      function Animal(nombre, genero) {
-        // Atributos
-        this.nombre = nombre;
-        this.genero = genero;
+      //NOTE: Clases y herencias
+      class Animal {
+        // el contructor es un método especial que se ejecuta en el momento de instanciar la clase
+        constructor(nombre, genero) {
+          //Atributos:
+          this.nombre = nombre;
+          this.genero = genero;
+        }
+        //Metodos: Para definir los métodos dentro de la clase se usa la siguiente forma
+        sonar() {
+          console.log("Hago sonidos porque estoy vivo");
+        }
+        saludar() {
+          console.log(`Hola me llamo ${this.nombre}`);
+        }
       }
-      function Perro(nombre, genero, tamanio) {
-        this.super = Animal;
-        this.super(nombre, genero);
-        this.tamanio = tamanio;
+      // De esta manera heredamos los atributos y los metodos de Animal
+      class Perro extends Animal {
+        constructor(nombre, genero, tamanio) {
+          // con el métod super() se manda a llamar el constructor de la clase padre
+          super(nombre, genero);
+          this.tamanio = tamanio;
+        }
+        sonar() {
+          console.log("Soy un perro y mi sonido es un ladrido");
+        }
+        ladrar() {
+          console.log(`${this.nombre}hace Guauuu Guauu !!`);
+        }
       }
-      // Perro está heredando de Animal
-      Perro.prototype = new Animal();
-      Perro.prototype.constructor = Perro;
-      // Sobreescritura de métodos del Prototipo padre en el hijo
-      Perro.prototype.sonar = function () {
-        console.log("Soy un perro y mi sonidoes un ladrido");
-      };
 
-      Perro.prototype.ladrar = function () {
-        console.log("Guau Guauu!!!");
-      };
-      const snoopy = new Perro("Snoopy", "Macho", "Mediano");
-      const lolaBunny = new Animal("LolaBunny", "Hembra");
-      console.log(snoopy);
-      console.log(lolaBunny);
+      const mimi = new Animal("Mimi", "Hembra"),
+        scooby = new Perro("Scobby", "Macho", "Gigante");
+      console.log(mimi);
+      mimi.sonar();
+      mimi.saludar();
+      console.log(scooby);
+      scooby.sonar();
+      scooby.saludar();
+      scooby.ladrar();
     </script>
   </body>
 </html>
