@@ -7,20 +7,23 @@
   </head>
   <body>
     <h1>Fundamentos Javascript</h1>
+
     <script>
-      //NOTE: aler, confirm y prompt
-      console.log(window);
-      // alert("hola esto es una alerta");
-      // confirm("Hola esto es una confirmacion");
-      // prompt("Hola esto un aviso y le permite al usuario ingresar un valor");
-      let alerta = alert("hola esto es una alerta"),
-        confirmacion = confirm("Hola esto es una confirmacion"),
-        aviso = prompt(
-          "Hola esto un aviso y le permite al usuario ingresar un valor"
-        );
-      console.log(alerta);
-      console.log(confirmacion);
-      console.log(aviso);
+      //NOTE: Expresiones regulares
+      /* Expresiones regulares son una secuencia de caracteres que forman un patrón de búsqueda, principalmente utilizandas para búsqueda de patrones de cadenas de caracteres.
+       */
+      let cadena =
+        "Lorem 5 ipsum dolor sit amet consectetur, adipisicing elit. Ex dolore cum, quidem quisquam illum assumenda eos expedita dicta! Qui totam exercitationem dolorum mollitia quis sapiente veniam delectus, sunt dolore 2 lorem suscipit?";
+      // let expReg = new RegExp("lorem", "ig");
+      // console.log(expReg.test(cadena));
+      // console.log(expReg.exec(cadena));
+      // La forma anterior es una de las formas pero actualmete se utiliza más la siguiente
+      let expReg2 = /lorem/gi;
+      console.log(expReg2.test(cadena));
+      console.log(expReg2.exec(cadena));
+      let expReg3 = /[0-9]/gi;
+      console.log(expReg3.test(cadena));
+      console.log(expReg3.exec(cadena));
     </script>
   </body>
 </html>
