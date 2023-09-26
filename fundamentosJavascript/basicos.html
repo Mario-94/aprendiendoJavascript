@@ -8,23 +8,19 @@
   <body>
     <h1>Fundamentos Javascript</h1>
     <script>
-      //NOTE: Operadores de corto circuito
-      // CortoCircuito OR: Cuando el valor de la izquierda en la expresión siempre pueda validar a true, es el valor que se cargará por defecto.
-      //
-      // CortoCircuito AND: Cuando el valor de la izquierda en la expresión siempre pueda validar a false es el valor que se carfará por defecto.
-      function saludar(nombre) {
-        nombre = nombre || "Desconocido";
-        console.log(`Hola ${nombre}`);
-      }
-      saludar();
-      saludar("Mario");
-      function saludar2(nombre) {
-        nombre = "Mario" && nombre;
-        // En este caso en el momento que pasemos un valor a nombre automaticamente pone la sentencia en true
-        console.log(`Hola 2 ${nombre}`);
-      }
-      saludar2();
-      saludar2("Mario");
+      //NOTE: aler, confirm y prompt
+      console.log(window);
+      // alert("hola esto es una alerta");
+      // confirm("Hola esto es una confirmacion");
+      // prompt("Hola esto un aviso y le permite al usuario ingresar un valor");
+      let alerta = alert("hola esto es una alerta"),
+        confirmacion = confirm("Hola esto es una confirmacion"),
+        aviso = prompt(
+          "Hola esto un aviso y le permite al usuario ingresar un valor"
+        );
+      console.log(alerta);
+      console.log(confirmacion);
+      console.log(aviso);
     </script>
   </body>
 </html>
