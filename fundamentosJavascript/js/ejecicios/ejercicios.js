@@ -59,4 +59,81 @@ repetirCadena("datos", 3)
 console.clear();
 
 
+/*NOTE: Parte dos de los ejercicos */
+// 5) Programa una función que invierta las palabras de una cadena de texto, pe. miFuncion("Hola Mundo") devolverá "odnuM aloH".
+const invertirCadena = (cadena = "") => {
 
+    if (cadena === "") {
+        console.error("No ingresaste una cadena de texto")
+    }
+    else {
+        let cadenaSeparada, cadenaNueva, cadenaInvertida;
+        cadenaSeparada = cadena.split("")
+        cadenaNueva = cadenaSeparada.reverse()
+        cadenaInvertida = cadenaNueva.join("");
+        console.info(cadenaInvertida)
+
+    }
+}
+console.log("Ejercicio 5")
+invertirCadena("hola");
+// 6) Programa una función para contar el número de veces que se repite una palabra en un texto largo, pe. miFuncion("hola mundo adios mundo", "mundo") devolverá 2.
+const palabraRepetida = (texto = "", palabra = "") => {
+    const palabras = texto.split(' '); // Dividir el texto en palabras
+    let contador = 0;
+
+    if (texto === "") console.error(`no se ingreso nigun texto o cadena`)
+    if (palabra === "") {
+        console.error(`no diste ninguna palabra a buscar`)
+    }
+    else {
+
+        for (const palabraTexto of palabras) {
+            if (palabraTexto === palabra) {
+                contador++;
+            }
+        }
+        if (contador < 1) {
+
+            console.info(`la palabra "${palabra}" no se encuentra en el texto`)
+        }
+        else {
+            console.info(`la palabra "${palabra}" se repite ${contador}`)
+        }
+    }
+
+
+
+}
+console.log("Ejercicio 6")
+palabraRepetida("hola mundo adios mundo", "mundo")
+// 7) Programa una función que valide si una palabra o frase dada, es un palíndromo (que se lee igual en un sentido que en otro), pe. mifuncion("Salas") devolverá true.
+const palindrome = (cadena = "") => {
+    let re = /[\W_]/gi; // De esta manera me permite quitar los caracteres no deseados
+
+    let cadenaFactorizada, cadenaInversa;
+    cadenaFactorizada = cadena.toLocaleLowerCase().replace(re, '');
+    cadenaInversa = cadenaFactorizada.split('').reverse().join('')
+
+    return console.log(cadenaInversa === cadenaFactorizada ? 'la cadena es un palindrome' : 'la palabra no es un palindrome')
+}
+
+console.log("Ejercicio 7")
+palindrome("Salas")
+// 8) Programa una función que elimine cierto patrón de caracteres de un texto dado, pe. miFuncion("xyz1, xyz2, xyz3, xyz4 y xyz5", "xyz") devolverá  "1, 2, 3, 4 y 5.
+const eliminarLetras = (cadena = "", patron = "") => {
+    if (!cadena) console.error('no ingresaste una cadena')
+    if (!patron) console.error('no ingresaste una patron')
+    else {
+        const regExpresion = new RegExp(patron, 'gi');
+        const cadenaNumerica = cadena.replace(regExpresion, '');
+        console.log(cadenaNumerica)
+        // Esto es lo mismo que solo que aqui con menos lineas de codigo
+        console.log(`esta es otra manera ${cadena.replace(new RegExp(patron, "ig"), "")}`)
+    }
+
+}
+console.log("Ejercicio 8")
+eliminarLetras("xyz1, xyz2, xyz3, xyz4 y xyz5", "xy")
+
+console.clear()
