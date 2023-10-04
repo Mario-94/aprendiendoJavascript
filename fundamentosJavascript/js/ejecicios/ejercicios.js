@@ -137,3 +137,74 @@ console.log("Ejercicio 8")
 eliminarLetras("xyz1, xyz2, xyz3, xyz4 y xyz5", "xy")
 
 console.clear()
+
+// NOTE: Parte tres de los ejercicos
+// 9) Programa una función que obtenga un numero aleatorio entre 501 y 600.
+const numeroAleatorio = () => {
+    let valorMin = Math.ceil(501), valorMax = Math.floor(600);
+    return console.log(Math.floor(Math.random() * (valorMax - valorMin) + valorMin));
+}
+numeroAleatorio();
+// 10) Programa una función que reciba un número y evalúe si es capicúa o no (que se lee igual en un sentido que en otro), pe. miFuncion(2002) devolverá true.
+const capicua = (numero = 0) => {
+
+    let regNumber = /^[0-9]+$/gi;
+    if (!numero) {
+        return console.warn("no ingresaste ningun numero")
+    }
+    if (typeof numero !== "number") {
+        return console.warn(`El valor ingresado "${numero}" no es un número`)
+    }
+    numero = numero.toString();
+    let cadenaInvertida = numero.split("").reverse().join("");
+
+    return (numero === cadenaInvertida
+        ? console.info(`El número es capicual, el numero original ${numero}, el número al reves ${cadenaInvertida} `)
+        : console.log(`El número no es capicual, el numero original ${numero}, el número al reves ${cadenaInvertida} `))
+    // let cadenaFactorizada, cadenaInversa;
+    // cadenaFactorizada = cadena.toLocaleLowerCase().replace(re, '');
+    // cadenaInversa = cadenaFactorizada.split('').reverse().join('')
+
+    // return console.log(cadenaInversa === cadenaFactorizada ? 'la cadena es un palindrome' : 'la palabra no es un palindrome')
+}
+capicua();
+capicua("22")
+capicua({})
+capicua(2000)
+capicua(2002)
+capicua(18.99)
+capicua(33);
+
+// 11) Programa una función que calcule el factorial de un número (El factorial de un entero positivo n, se define como el producto de todos los números enteros positivos desde 1 hasta n), pe. miFuncion(5) devolverá 120.
+const factorial = (num = undefined) => {
+
+    if (num === undefined) { return console.warn("ingresa un numero para calcular el factorial") }
+
+
+    if (typeof num !== "number") { return console.warn(`el valor ${num} ingresado no es un número`) }
+
+    if (num === 0) { return console.warn("el número no puede ser cero") }
+
+    if (Math.sign(num) === -1) { return console.warn('el número no puede ser negativo') }
+    let factorial = 1;
+    for (let index = num; index > 0; index--) {
+        // factorial = factorial * index; 
+        // la funcion de arriba es lo mismo a la de abajo, solo es para que quede mejor o mas reducido el codigo
+        factorial *= index
+    }
+    // if (regNumber.test(num)) {
+    //     for (let index = num; index > 0; index--) {
+    //         contenedor = contenedor * index;
+    //     }
+    //     return console.info(contenedor)
+    // }
+    return console.info(factorial)
+
+}
+factorial();
+factorial("5");
+factorial([1, 2, 3])
+factorial(0);
+factorial(-5);
+factorial(5);
+console.clear()
