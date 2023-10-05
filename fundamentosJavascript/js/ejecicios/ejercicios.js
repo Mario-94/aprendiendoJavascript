@@ -208,3 +208,129 @@ factorial(0);
 factorial(-5);
 factorial(5);
 console.clear()
+
+// NOTE: parte cuatro de los ejercicios
+// 12) Programa una función que determine si un número es primo (aquel que solo es divisible por sí mismo y 1) o no, pe. miFuncion(7) devolverá true.
+const numerosPrimos = (num = undefined) => {
+    if (num === undefined) {
+        return console.warn('No ingresaste un número')
+    }
+    if (typeof num !== "number") {
+        return console.warn(`El valor "${num}" no es un numero`);
+    }
+    if (num === 0) {
+        return console.error("no puedes ingresar Cero")
+    }
+    if (num === 1) {
+        return console.error('No puedes ingresar el valor de 1');
+    }
+    if (Math.sign(num) === -1) {
+        return console.error('No puedes ingresar numeros negativos');
+    }
+    // let numeroPrimo, contador = 1;
+    // for (let index = 1; index < num; index++) {
+    //     numeroPrimo = num % index
+    //     if (numeroPrimo === 0) {
+    //         contador++
+    //     }
+    // }
+    // if (contador > 2) {
+    //     console.info(`El número ${num} no es un numero primo`)
+    // }
+    // else {
+    //     console.info(`El número ${num} es un numero primo`)
+    // }
+    let divisible = false;
+    for (let i = 2; i < num; i++) {
+        if ((num % i) === 0) {
+            divisible = true;
+            break;
+        }
+    }
+    return (divisible)
+        ? console.info(`el número ${num} no es un numero primo`)
+        : console.info(`el numero ${num} es un numero primo`)
+
+}
+numerosPrimos();
+numerosPrimos("20");
+numerosPrimos(true);
+numerosPrimos(0);
+numerosPrimos(1);
+numerosPrimos(-1);
+numerosPrimos(13)
+numerosPrimos(4)
+// 13) Programa una función que determine si un número es par o impar, pe. miFuncion(29) devolverá Impar.
+const numeroParImpar = (num = undefined) => {
+    if (num === undefined) {
+        return console.warn('No ingresaste un número')
+    }
+    if (typeof num !== "number") {
+        return console.warn(`El valor "${num}" no es un numero`);
+    }
+
+    if (num === 0) {
+        return console.log(`el valor no puede ser "${num}"`)
+    }
+    if (Math.sign(num) === -1) {
+        return console.warn('No puedes ingresar numeros negativos');
+    }
+    else {
+        if (num % 2 === 0) {
+            return console.info(`El número ${num} es número par `)
+        }
+        else {
+            return console.info(`El número ${num} es número impar `)
+        }
+    }
+}
+
+numeroParImpar(0)
+
+// 14) Programa una función para convertir grados Celsius a Fahrenheit y viceversa, pe. miFuncion(0,"C") devolverá 32°F.
+
+const convertidorTemperatura = (grados = undefined, expresion = undefined) => {
+    let incluyeEExpresion = ["c", "f"], gradosFC;
+    let mensajeResponse, expresionFormateada;
+
+
+    if (grados === undefined) {
+        const mensaje = `No se ingresaron los grados ${expresion === "c" ? "centigrados" : "fahrenheit"}`;
+        return console.warn(mensaje);
+    }
+    if (typeof grados !== "number") {
+        return console.warn("El valor ingresado no es un número")
+    }
+
+    if (typeof expresion === "string") {
+        expresionFormateada = expresion.toLowerCase()
+    }
+    if (!incluyeEExpresion.includes(expresionFormateada)) {
+        return console.error('No ingresaste el indicador al cual vas a cambiar los grados "f" para fahrenheint "c" celsius')
+    }
+
+    else {
+        if (expresion === "c") {
+            gradosFC = parseFloat((((grados * 9) / 5) + 32).toFixed(4));
+        }
+        else {
+            gradosFC = parseFloat((((grados - 32) * 5) / 9).toFixed(4));
+        }
+        mensajeResponse = `${grados}° ${expresion === "c" ? "celsius son:" : "fahrenheint son:"} ${gradosFC}° ${expresion === "c" ? "fahrenheit" : "celsius"}`;
+    }
+    // const mensajeResponse=`Los grados ${expresion==="c"?"los grados centigrados son" ${gradosFC}: "los grados fahrenheit son " ${gradosFC}}`;
+    // Tener cuidado con la expresion anterior que esta mal la manera en la que lo hice
+
+    console.info(mensajeResponse)
+}
+
+convertidorTemperatura();
+convertidorTemperatura("2");
+convertidorTemperatura(2);
+convertidorTemperatura(2, true);
+convertidorTemperatura(2, "hola");
+convertidorTemperatura(2, "E");
+convertidorTemperatura(0, "c");
+convertidorTemperatura(100, "c");
+convertidorTemperatura(32, "f")
+console.clear();
