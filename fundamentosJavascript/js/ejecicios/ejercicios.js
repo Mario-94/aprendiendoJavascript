@@ -334,3 +334,125 @@ convertidorTemperatura(0, "c");
 convertidorTemperatura(100, "c");
 convertidorTemperatura(32, "f")
 console.clear();
+// NOTE:parte cinco de los ejercicios
+
+// 15) Programa una función para convertir números de base binaria a decimal y viceversa, pe. miFuncion(100,2) devolverá 4 base 10.
+const convertirBinarioDecimal = (num = undefined, base = undefined) => {
+    if (num === undefined) {
+        return console.error('no ingresase el número a convertir')
+    }
+    if (typeof num !== "number") {
+        return console.warn('El valor dado no es un némero')
+    }
+    if (Math.sign(num) === -1 || Math.sign(base) === -1) {
+        return console.warn('el valor dado es un número negativo')
+    }
+    if (base === undefined) {
+        return console.error('no se a ingresado la base a la que convertir')
+    }
+    if (typeof base !== "number") {
+        return console.warn("El valor que proporcionaste no es un número")
+    }
+    if (base === 2) {
+        let numeroDecimal = parseInt(num, base)
+        return console.info(`${num} base ${base} es igual a ${numeroDecimal} base 10`)
+    }
+
+    if (base == 10) {
+        let numeroBinario = num.toString(2)
+        return console.info(`${num} base ${base} es igual a ${numeroBinario} base 2`)
+    }
+
+}
+convertirBinarioDecimal();
+convertirBinarioDecimal("2")
+convertirBinarioDecimal(100)
+convertirBinarioDecimal(100, "2")
+convertirBinarioDecimal(100, 2)
+convertirBinarioDecimal(101010101, 2)
+convertirBinarioDecimal(341, 10)
+// 16) Programa una función que devuelva el monto final después de aplicar un descuento a una cantidad dada, pe. miFuncion(1000, 20) devolverá 800.
+const aplicarDescuento = (cantidad = undefined, descuento = undefined) => {
+    if (cantidad === undefined && descuento === undefined) {
+        console.error('no se ingresaron datos')
+    }
+    if (cantidad === undefined) {
+        return console.error('la cantidad no fue dada');
+    }
+    if (typeof cantidad !== "number") {
+        return console.error("la cantidad no es un número");
+    }
+    if (Math.sign(cantidad) === -1) {
+        return console.error("la cantidad no puede ser un número negativo");
+    }
+    if (descuento === undefined) {
+        return console.error('la descuento no fue dada');
+    }
+    if (typeof descuento !== "number") {
+        return console.error("la descuento no es un número");
+    }
+    if (Math.sign(descuento) === -1) {
+        return console.error("el descuento no puede ser un número negativo");
+    }
+    let resultadoDescuento = (cantidad * (1 - (descuento / 100)))
+    console.info(`monto ${cantidad} - ${descuento}% = ${resultadoDescuento}`)
+}
+// aplicarDescuento(4000, 20)
+// 17) Programa una función que dada una fecha válida determine cuantos años han pasado hasta el día de hoy, pe. miFuncion(new Date(1984,4,23)) devolverá 35 años (en 2020).
+// NOTE: esta es la opcion que yo di como respuesta al calcular las fechas
+const calcularEdad = (año = undefined, mes = undefined, dia = undefined) => {
+
+
+    if (año === undefined) {
+        return console.warn("El año no fue dado")
+    }
+    if (mes === undefined) {
+        return console.warn("El mes no fue dado")
+    } if (dia === undefined) {
+        return console.warn("El dia no fue dado")
+    }
+    if (typeof año !== "number") {
+        return console.warn('El año ingresado no es un número')
+    }
+    if (typeof mes !== "number") {
+        return console.warn('El mes ingresado no es un número')
+    }
+    if (typeof dia !== "number") {
+        return console.warn('El día ingresado no es un número')
+    }
+    if (Math.sign(año) === -1 || Math.sign(mes) === -1 || Math.sign(dia) === -1) {
+        return console.warn('no puede agregar valores negativos')
+    }
+    // con la siguiente linea revisamo que los valores dados no sean decimales ya que no nos serviran
+    if (!Number.isInteger(año) || !Number.isInteger(mes) || !Number.isInteger(dia)) {
+        return console.warn('no puedes agregar valores con decimal')
+    }
+    const fechaAgrupada = año.toString() + "/" + mes.toString() + "/" + dia.toString();
+    const totalEnMiliSegundos = parseInt(Date.parse(fechaAgrupada));
+    const fechaActual = Date.now()
+    const tiempoTranscurrido = (fechaActual - totalEnMiliSegundos)
+    console.log(Math.floor(tiempoTranscurrido / 3.154e+10));
+
+}
+calcularEdad(1993, 4, 15)
+// NOTE: Esta es la opcion de las fechas que me proponen para solucionar el ejercicio, utilizando el metodo new Date();
+const calcularAnios = (fecha = undefined) => {
+    if (fecha === undefined) {
+        return console.warn('No ingresaste la fecha');
+    }
+    if (!(fecha instanceof Date)) {
+        return console.error('El valor que ingresaste no es una fecha válida');
+    }
+    let hoyMenosFecha = new Date().getTime() - fecha.getTime(),
+        aniosEnMS = 1000 * 60 * 60 * 24 * 365,
+        aniosHumanos = Math.floor(hoyMenosFecha / aniosEnMS);
+    return (Math.sign(aniosHumanos) === -1
+        ? console.info(`faltan ${Math.abs(aniosHumanos)} años para el  ${fecha.getFullYear()}`)
+        : (Math.sign(aniosHumanos) === 1)
+            ? console.info(`Han pasado ${aniosHumanos} años, desde ${fecha.getFullYear()}`)
+            : console.info(`Estamos en el año actual ${fecha.getFullYear()}`)
+    )
+}
+// NOTE: Me parese una mejor opcion asi porque en la forma que yo solucione me faltaba validar que el año no superara al actual y si si pues acomodar la fecha y decir que faltaba tiempo para ella
+calcularAnios(new Date(2024, 4, 15))
+console.clear();
