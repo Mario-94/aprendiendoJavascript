@@ -456,3 +456,83 @@ const calcularAnios = (fecha = undefined) => {
 // NOTE: Me parese una mejor opcion asi porque en la forma que yo solucione me faltaba validar que el año no superara al actual y si si pues acomodar la fecha y decir que faltaba tiempo para ella
 calcularAnios(new Date(2024, 4, 15))
 console.clear();
+
+// NOTE: Parte seis
+
+// 18) Programa una función que dada una cadena de texto cuente el número de vocales y consonantes, pe. miFuncion("Hola Mundo") devuelva Vocales: 4, Consonantes: 5.
+const contadorVocalesConsonantes = (cadena = undefined) => {
+    let expresionRegular = /[a-zA-Z]+/;
+    const expresionRegularVocales = /[aeiouAEIOU]/gi;
+    const expresionRegularConsonantes = /[^aeiouAEIOU0-9]/g;
+
+    if (cadena === undefined) {
+        return console.error('No se ingreso ninguna cadena');
+    }
+    if (typeof cadena !== 'string') {
+        return console.warn('no se ingreso una cadena valida')
+    }
+    if (!expresionRegular.test(cadena)) {
+        return console.info(`En la cadena "${cadena}" dada no se tiene ni vocales ni consonantes`)
+    }
+    else {
+        let vocales = cadena.match(expresionRegularVocales) ? cadena.match(expresionRegularVocales).length : 0
+        let consonantes = cadena.match(expresionRegularConsonantes) ? cadena.match(expresionRegularConsonantes).length : 0
+        let caractereDistintos = cadena.length - consonantes - vocales
+        console.log(`La cadena "${cadena}" tiene ${vocales} vocales y ${consonantes} consonantes y los caracteres que no son ni vocales ni letras son ${caractereDistintos}`)
+    }
+
+
+}
+// contadorVocalesConsonantes();
+// contadorVocalesConsonantes(false);
+// contadorVocalesConsonantes({});
+// contadorVocalesConsonantes(123);
+// contadorVocalesConsonantes("123456a")
+// contadorVocalesConsonantes("w3456awwqaaw");
+
+// 19) Programa una función que valide que un texto sea un nombre válido, pe. miFuncion("Jonathan MirCha") devolverá verdadero.
+const revisarUsuarios = (cadena = undefined) => {
+
+    let nombre = 'Mario Alberto';
+
+    if (cadena === undefined) {
+        return console.error('no se ingreso un nombre');
+    }
+    if (typeof cadena !== "string") {
+        return console.warn(`${cadena} no es una cadena valida, debe de ser un nombre`);
+    }
+
+
+    return console.log(nombre === cadena ? `el nombre "${cadena}" si es un nombre valido` : `el nombre "${cadena}" no es un nombre valido`)
+}
+revisarUsuarios("Mario Alberto")
+// NOTE: El ejercicio se refiera a un nombre valido es decir un nombre el cual no contiene numeros o caracteres especiales en el, por lo tanto lo realizaremos de nuevo
+const validarNombre = (cadena = undefined) => {
+    const expresionRegular = /^[A-Za-z]+$/
+    if (cadena === undefined) {
+        return console.error(`No se ingreso un valor `)
+    }
+    if (typeof cadena !== "string") {
+        return console.warn(`${cadena} no es una cadena valida, debe de ser del tipo string`)
+    }
+    return console.info(expresionRegular.test(cadena) ? `${cadena} es un nombre valido` : `${cadena} no es un nombre valido`)
+
+}
+validarNombre('mario')
+// 20) Programa una función que valide que un texto sea un email válido, pe. miFuncion("jonmircha@gmail.com") devolverá verdadero.
+const validarEmail = (cadena = undefined) => {
+    const expresionRegularEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+    if (cadena === undefined) {
+        return console.error('No se ingreso una cadena a revisar');
+    }
+    if (typeof cadena !== "string") {
+        return console.warn('La cadena que se proporciono no es una cadena valida');
+    }
+    if ((expresionRegularEmail.test(cadena))) {
+        return console.info(`el correo ${cadena} es un correo valido`)
+    }
+
+}
+validarEmail("usuario@dominio.com")
+
