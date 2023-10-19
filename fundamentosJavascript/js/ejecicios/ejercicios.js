@@ -567,7 +567,7 @@ const compararNumeros = (numero = undefined) => {
         console.error(`No se a ingresaro informacion`)
     }
     if (!Array.isArray(numero)) {
-        return console.warn(`${numero} no son numeros`)
+        return console.warn(`${numero} no son Arreglos`)
     }
     if (numero.length === 0) {
         return console.warn('El arregloesta vacío')
@@ -626,3 +626,90 @@ const acumularParesImprares = (numero = undefined) => {
 
 acumularParesImprares([1, 2, 3, 4, 5, 6, 7, 8, 9, 0])
 console.clear();
+// NOTE: Parte 8
+
+// 24) Programa una función que dado un arreglo de números devuelva un objeto con dos arreglos, el primero tendrá los numeros ordenados en forma ascendente y el segundo de forma descendiente, pe. miFuncion([7, 5,7,8,6]) devolverá { asc: [5,6,7,7,8], desc: [8,7,7,6,5] }.
+const ordenamiento = (arr = undefined) => {
+    if (arr === undefined) {
+        return console.error('El arreglo esta vacio');
+    }
+    if (arr.length === 0) {
+        return console.error('el arreglo esta vacio');
+    }
+    if (!Array.isArray(arr)) {
+        return console.warn(`${arr} no es un arreglo`);
+    }
+    if (arr.some(elemento => typeof elemento !== 'number' || isNaN(elemento))) {
+        return console.warn(`${arr} contiene elementos que no son números, revise y vuelva a intentar`)
+    }
+    const resultado = {
+        /* NOTE: Si dejamos el codigo de la siguiente manera
+         asc: arr.sort((a, b) => { return a - b }),
+         des: arr.sort((a, b) => { return b - a }),
+         aunque parezca que esta bien, lo que estamos haciendo al aplicar el metodo sort, es modificar el arr original, es por eso que nos regresara el ultimo acomodo  que en este caso es el de des para las dos que necesitamos}
+         ejemplo: [3, 23, 12]
+         asc:(3) [23, 12, 3]
+         des:(3) [23, 12, 3]
+         es por eso que utilizaremos el express[...arr] operator para poder  realizar una copia del arreglo original y no modificarlo
+         */
+        asc: [...arr].sort((a, b) => { return a - b }),
+        des: [...arr].sort((a, b) => { return b - a }),
+    }
+    return console.info(resultado)
+}
+// ordenamiento([3, 23, 12])
+
+// 25) Programa una función que dado un arreglo de elementos, elimine los duplicados, pe. miFuncion(["x", 10, "x", 2, "10", 10, true, true]) devolverá ["x", 10, 2, "10", true].
+const eliminarRepetidos = (arr = undefined) => {
+    if (arr === undefined) {
+        return console.error('El arreglo esta vacio');
+    }
+    if (arr.length === 0) {
+        return console.error('el arreglo esta vacio');
+    }
+    if (arr.length === 1) {
+        return console.warn('Proporciona al menos dos valores en el arreglo')
+    }
+    if (!Array.isArray(arr)) {
+        return console.warn(`${arr} no es un arreglo`);
+    }
+    /*Los objetos Set son colecciones de valores. Puede iterar a través de los elementos de un conjunto en orden de inserción. Un valor en un Set solo puede ocurrir una vez; es único en la colección del Set. */
+    const resultado = new Set(arr)
+    /*opcion dos */
+    const valorUnico = arr.filter((item, index, arr) => arr.indexOf(item) === index)
+    return console.log(`Este es con el metodo Set ${resultado} esto utilizando filter ${valorUnico}`)
+}
+// eliminarRepetidos(["x", 10, "x", 2, "10", 10, true, true])
+
+// 26) Programa una función que dado un arreglo de números obtenga el promedio, pe. promedio([9,8,7,6,5,4,3,2,1,0]) devolverá 4.5.
+const numeroPromedio = (arr = undefined) => {
+    if (arr === undefined) {
+        return console.error('El arreglo esta vacio');
+    }
+    if (arr.length === 0) {
+        return console.error('el arreglo esta vacio');
+    }
+    if (!Array.isArray(arr)) {
+        return console.warn(`${arr} no es un arreglo`);
+    }
+    let suma = 0;
+    // for (let index = 0; index < arr.length; index++) {
+    //     suma = (arr[index] + suma)
+    // }
+    // Esta es otra opcion que es mas facil de entender a comparacion de for, en esta el funcionamiento de for of ayuda a interar los valores y poder almacenarlos en diferente manera, ya que va moviendose de uno por uno
+    for (const valor of arr) {
+        suma += valor
+    }
+    /* la funcion anterior puede mejorarse utilizando un reducer  */
+    const resultado = arr.reduce((total, num, index, arr) => {
+        total += num;
+        if (index === arr.length - 1) {
+            return `El promedio de ${arr.join(" + ")} es ${total / arr.length}`
+        }
+        else {
+            return total
+        }
+    })
+    console.log(resultado)
+}
+numeroPromedio([9, 8, 7, 6, 5, 4, 3, 2, 1, 2])
