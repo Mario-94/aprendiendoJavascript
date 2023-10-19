@@ -285,7 +285,8 @@ const numeroParImpar = (num = undefined) => {
     }
 }
 
-numeroParImpar(0)
+numeroParImpar(2)
+
 
 // 14) Programa una función para convertir grados Celsius a Fahrenheit y viceversa, pe. miFuncion(0,"C") devolverá 32°F.
 
@@ -535,4 +536,93 @@ const validarEmail = (cadena = undefined) => {
 
 }
 validarEmail("usuario@dominio.com")
+console.clear()
+// NOTE: Parte 7
+// 21) Programa una función que dado un array numérico devuelve otro array con los números elevados al cuadrado, pe. mi_funcion([1, 4, 5]) devolverá [1, 16, 25].
+const elevarNumero = (numero = undefined) => {
+    const expresionRegular = /^[A-Za-z]+$/
+    if (numero === undefined) {
+        return console.error('no se ingreso algun valor')
+    }
+    if (!Array.isArray(numero)) {
+        return console.warn(`${numero} no es un arreglo`);
+    }
+    if (numero.length === 0) {
+        return console.warn('El arregloesta vacío')
+    }
 
+    if (numero.some(elemento => typeof elemento !== 'number' || isNaN(elemento))) {
+        return console.warn(`El arreglo ${numero} contiene elementos que no son números`);
+    }
+    const newArr = numero.map(numero => numero * numero)
+    return console.info(`el cuadrado de "[${numero}]" es: ${newArr}`)
+}
+
+// elevarNumero("1,2,3,4,5")
+// elevarNumero([1, 2, 3, {}])
+// elevarNumero(["a", "1", "c"])
+// 22) Programa una función que dado un array devuelva el número mas alto y el más bajo de dicho array, pe. miFuncion([1, 4, 5, 99, -60]) devolverá [99, -60].
+const compararNumeros = (numero = undefined) => {
+    if (numero === undefined) {
+        console.error(`No se a ingresaro informacion`)
+    }
+    if (!Array.isArray(numero)) {
+        return console.warn(`${numero} no son numeros`)
+    }
+    if (numero.length === 0) {
+        return console.warn('El arregloesta vacío')
+    }
+    if (numero.some(elemento => typeof elemento !== 'number' || isNaN(elemento))) {
+        return console.warn(`El arreglo ${numero} contiene elementos que no son números`);
+    }
+    const numeroMayor = Math.max(...numero)
+    const numeroMenor = Math.min(...numero)
+    return console.info([numeroMayor, numeroMenor])
+
+}
+// compararNumeros();
+// compararNumeros([1, 3, -1, "a"]);
+// compararNumeros([1, 3, -1, 3]);
+// 23) Programa una función que dado un array de números devuelva un objeto con 2 arreglos en el primero almacena los números pares y en el segundo los impares, pe. miFuncion([1,2,3,4,5,6,7,8,9,0]) devolverá {pares: [2,4,6,8,0], impares: [1,3,5,7,9]}.
+
+const acumularParesImprares = (numero = undefined) => {
+
+    if (numero === undefined) {
+        console.error(`No se a ingresaro informacion`)
+    }
+    if (!Array.isArray(numero)) {
+        return console.warn(`${numero} no son numeros`)
+    }
+    if (numero.some(elemento => typeof elemento !== 'number' || isNaN(elemento))) {
+        return console.warn(`El arreglo ${numero} contiene elementos que no son números`);
+    }
+    if (numero.length === 0) {
+        return console.warn('El arregloesta vacío')
+    }
+
+    // let impar = [];
+    // let par = [];
+    // const parImpar = numero.map((num, index) => {
+    //     if (num === 1) {
+    //         return index
+    //     }
+    //     if (num % 2 === 0) {
+    //         return par.push(num)
+    //     }
+    //     else {
+    //         return impar.push(num)
+    //     }
+    // })
+    // const resultado = { pares: par, impares: impar }
+    // console.log(`el resultado es de ${numero} es: ${resultado}`)
+    // NOTE: Otra forma de resolver este ejercicio es la siguiente, lo que pasa es quie de la manera en la que yo lo retorno es un objeto, el problema es que genero un nuevo array que es parImpar, sin embargo, al separarlo y buscar pares e impares pues no funcionaria, lo correcto es usar filter para buscar las coincidencias con los criterios  de par impar como lo realizo acontinuación
+    const resultado = {
+        pares: numero.filter(num => num % 2 === 0),
+        impares: numero.filter(num => num % 2 !== 0)
+    }
+    return console.info(resultado
+    )
+}
+
+acumularParesImprares([1, 2, 3, 4, 5, 6, 7, 8, 9, 0])
+console.clear();
