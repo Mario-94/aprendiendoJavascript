@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>asincronia en javascript</title>
+  </head>
+  <body>
+    <h1>asincronia en javascript</h1>
+  </body>
+  <script>
+    // setTimeout(() => {
+    //   console.log("ejecutando un setTimeout");
+    // }, 1000);
+    // setInterval(() => {
+    //   console.log("este se ejecuta varias veces");
+    //   console.log(new Date().toLocaleTimeString());
+    // }, 1000);
+    // NOTE: En este casi veremos las funciones asincronas y eventos loop, mostrando los siguientes ejemplos:
+    // Código Síncrono Bloqueante
+    (() => {
+      console.log("Código Síncrono");
+      console.log("Inicio");
+      function dos() {
+        console.log("Dos");
+      }
+      function uno() {
+        console.log("Uno");
+        dos();
+        console.log("tres");
+      }
+      uno();
+      console.log("Fin");
+    })();
+    // Código Asincrono no Bloqueante
+    (() => {
+      console.log("Código Asíncrono");
+      console.log("Inicio");
+      function dos() {
+        setTimeout(() => {
+          console.log("Dos");
+        }, 1000);
+      }
+      function uno() {
+        setTimeout(() => {
+          console.log("Uno");
+        }, 0);
+        dos();
+        console.log("Tres");
+      }
+      uno();
+      console.log("Fin");
+    })();
+  </script>
+</html>
